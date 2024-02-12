@@ -1,0 +1,29 @@
+def convert_numbers_to_letters(input_string):
+    result = ""
+    words = input_string.split(' ')
+    
+    for word in words:
+        if '.' in word:
+            numbers = word.split('.')
+            for num in numbers:
+                try:
+                    num = int(num)
+                    if 1 <= num <= 26:
+                        letter = chr(ord('A') + num - 1)
+                        result += letter
+                    else:
+                        result += f"[{num}]"
+                except ValueError:
+                    result += num  # If it's not a valid number, keep it as is
+            result += ' '  # Add a space after each converted word
+        else:
+            result += word + ' '  # If no numbers, keep the word as is and add a space
+
+    return result.rstrip()  # Remove trailing space
+#example 25.15.21. 1.18.5. 1.14. 9.4.10.15.20. 8.1.8.1.8.1.8.1 8.1.8.1.8.1.8.1.8.1 8.1.8.1.8.1.8.1.8.1 8.1.8.1.8.1.8.1 8.1.8.1.8.1.8.1 8.1.8.1.8.1.8.1
+
+# returns: YOU ARE AN IDJOT HAHAHAHA HAHAHAHAHA HAHAHAHAHA HAHAHAHA HAHAHAHA HAHAHAHA
+input_str = input("Type your encoded phrase: ")
+output_str = convert_numbers_to_letters(input_str)
+print(f"Input: {input_str}")
+print(f"Output: {output_str}")
